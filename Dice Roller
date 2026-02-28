@@ -1,0 +1,38 @@
+import kotlin.random.Random
+
+// TODO: Implement rollDie(sides: Int, rnd: Random): Int
+fun rollDie(sides: Int, rnd: Random): Int {
+    return rnd.nextInt(1, sides + 1)
+}
+
+// TODO: Implement rollTwoDice(rnd: Random): Pair<Int, Int>
+fun rollTwoDice(rnd: Random): Pair<Int, Int> {
+    val first = rollDie(6, rnd)
+    val second = rollDie(6, rnd)
+    return Pair(first, second)
+}
+
+// TODO: Implement formatRoll(rollNumber: Int, a: Int, b: Int): String
+fun formatRoll(rollNumber: Int, a: Int, b: Int): String {
+    var result = "Roll $rollNumber: $a and $b"
+    if (a == b) {
+        result += " -> Double!"
+    }
+    return result
+}
+
+// TODO: Implement main() to seed Random, simulate three "Roll" presses, and print formatted output
+fun main() {
+    val rnd = Random(123)  // Seeded for reproducible output
+    var rollNumber = 0
+
+    println("--- Dice Roller ---")
+
+    repeat(3) {
+        println("Pressing 'Roll'...")
+        rollNumber++
+
+        val (a, b) = rollTwoDice(rnd)
+        println(formatRoll(rollNumber, a, b))
+    }
+}
